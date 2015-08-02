@@ -55,8 +55,9 @@ public:
     }
     inline operator DelegateKey() const
     {
-        return { reinterpret_cast<std::uintptr_t>(m_this_ptr),
-                 reinterpret_cast<std::uintptr_t>(m_stub_ptr) };
+        auto arg1 = reinterpret_cast<std::uintptr_t>(m_this_ptr);
+        auto arg2 = reinterpret_cast<std::uintptr_t>(m_stub_ptr);
+        return { {arg1, arg2} };
     }
     template <typename... Uref>
     inline RT operator() (Uref &&... args)
